@@ -2,5 +2,13 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
+    {
+      "library": "vue@2.7.16",
+      "destination": "wwwroot/lib/vue/"
+    },
+    {
+      "library": "axios@1.6.8",
+      "destination": "wwwroot/lib/axios/"
+    }
   ]
 }

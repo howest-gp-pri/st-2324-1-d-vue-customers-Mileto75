@@ -1,6 +1,47 @@
-﻿@{
-    ViewData["Title"] = "Bull.com";
-}
+﻿
+<div id="app">
+    <h3>{{pageTitle}}</h3>
+    
+    <div class="row justify-content-center">
+        <div v-on:click="getCategories" class="col col-lg-5 text-white bg-info text-center m-1">
+            <strong>Categories</strong>
+        </div>
+        <div v-on:click="getProducts" class="col col-lg-5 text-white bg-info text-center m-1">
+            <strong>Products</strong>
+        </div>
+    </div>
+    @* Categories *@
+    <div v-if="categoriesVisible" class="row just">
+        <div v-for="category in categories" class="col col-lg-4 text-center">
+            <div class="card" style="width: 18rem;">
+                <img v-bind:src="category.imageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{category.name}}</h5>
+                </div>
+                <div class="card-footer text-center">
+                    <a class="btn btn-primary">Show products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* Products *@
+    <div v-if="productsVisible" class="row">
+        <div v-for="product in products" class="col col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <!--tips: add .text-center,.text-right to the .card to change card text alignment-->
+                <img v-bind:src="product.imageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{product.price}}&euro;</h6>
+                    <a href="#" class="btn btn-primary">Detail</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* end of vue app *@
 
-<h3>Implementeer hier je Vue app</h3>
-   
+@* scripts *@
+<script src="~/lib/axios/axios.js"></script>
+<script src="~/lib/vue/vue.js"></script>
+<script src="~/js/app.js" asp-append-version="true"></script>
