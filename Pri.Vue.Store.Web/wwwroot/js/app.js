@@ -52,7 +52,7 @@
                     console.log(response.data);
                     this.product = response.data;
                     //show modal
-                    $('#productDetailModal').modal('toggle');
+                    $('#productDetailModal').modal('show');
                 })
                 .catch(error => console.log(error));
             //this.loading = false;
@@ -69,6 +69,9 @@
             this.loading = false;
             this.categoriesVisible = false;
             this.productsVisible = true;
+        },
+        toggleModal: function (id) {
+            $(`#${id}`).modal('toggle');
         },
     },
 });

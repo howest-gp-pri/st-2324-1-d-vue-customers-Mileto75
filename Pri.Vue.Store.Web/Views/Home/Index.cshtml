@@ -56,14 +56,19 @@
                 </div>
                 <div class="modal-body">
                     <!--Modal content-->
-                    <img class="card-img-top" v-bind:src="product.imageUrl" />
-                    <p>{{product.description}}</p>
-                    <p>{{product.price}}</p>
-                    <p>{{product.categoryName}}</p>
+                        <!--tips: add .text-center,.text-right to the .card to change card text alignment-->
+                    <div class="col">
+                        <img v-bind:src="product.imageUrl" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col">
+                        
+                            <h5 class="card-title">{{product.name}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{product.price}}&euro</h6>
+                            <p v-html="product.description" class="card-text"></p>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button v-on:click="toggleModal('productDetailModal')" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
