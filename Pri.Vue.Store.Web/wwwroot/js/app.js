@@ -6,6 +6,7 @@
         categoriesUrl: "https://localhost:7086/api/Categories",
         productsUrl: "https://localhost:7086/api/Products",
         categories: [],
+        searchProduct: "",
         products: [],
         filteredProducts: [],
         product: {
@@ -16,6 +17,11 @@
         loading: false,
     },
     methods: {
+        filterProducts: function () {
+            //filter the products array based on searchProduct
+            this.searchProduct;
+            this.filteredProducts = this.products.filter(el => el.name.includes(this.searchProduct));
+        },
         getCategories: async function () {
             //call the api
             this.productsVisible = false;
@@ -43,6 +49,7 @@
                     })
                     .catch(error => console.log(error));
             this.loading = false;
+            this.filteredProducts = this.products;
         },
         getProductDetails: async function (id) {
             const url = `${this.productsUrl}/${id}`;

@@ -1,5 +1,4 @@
-﻿
-<div id="app">
+﻿<div id="app">
     <h3>{{pageTitle}}</h3>
     <div v-if="loading" class="row justify-content-center">
         <div class="spinner-border text-primary" role="status">
@@ -30,8 +29,15 @@
             </div>
         </div>
         @* Products *@
-        <div v-if="productsVisible" class="row">
-            <div v-for="product in products" class="col col-lg-4">
+    <div v-if="productsVisible">
+        <div class="row justify-content-center m-2">
+            <div class="form-group col col-lg-5">
+                <label>Search:</label>
+                <input v-on:keyUp="filterProducts" v-model="searchProduct" type="text" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div v-for="product in filteredProducts" class="col col-lg-4">
                 <div class="card" style="width: 18rem;">
                     <!--tips: add .text-center,.text-right to the .card to change card text alignment-->
                     <img v-bind:src="product.imageUrl" class="card-img-top" alt="...">
@@ -43,6 +49,7 @@
                 </div>
             </div>
         </div>
+    </div>
     @* Modals *@
     @* Product Detail Modal *@
     <div class="modal fade" id="productDetailModal" tabindex="-1" role="dialog" aria-labelledby="productDetailModal-label" aria-hidden="true">
@@ -63,7 +70,7 @@
                     <div class="col">
                         
                             <h5 class="card-title">{{product.name}}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{product.price}}&euro</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{product.price}} &euro;</h6>
                             <p v-html="product.description" class="card-text"></p>
                     </div>
                 </div>
